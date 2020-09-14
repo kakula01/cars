@@ -4,7 +4,7 @@ import axios from 'axios'
 
 class  car extends React.Component{
     state={
-        vehileType:null,
+        vehicleType:null,
         engine:null,
         doors:null,
         wheels:null,
@@ -12,7 +12,7 @@ class  car extends React.Component{
         model:null,
         bodyType:null,
         errors:{
-            vehileType:'',
+            vehicleType:'',
             engine:'',
             doors:'',
             wheels:'',
@@ -22,6 +22,9 @@ class  car extends React.Component{
 
         }
     }
+    validationCheck = (value) => {
+      return value.length === 0 ? 'Required!!' : '';
+    }
     handleChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
@@ -29,50 +32,31 @@ class  car extends React.Component{
         switch (name) {
             case 'vehicleType': 
             this.state.vehicleType = value;
-              errors.vehicleType = 
-                value.length < 5
-                  ? 'vehicle Name must be 5 characters long!'
-                  : '';
+              errors.vehicleType = this.validationCheck(value)
               break;
             case 'engine': 
             this.state.engine = value;
-              errors.engine = 
-              value < 4
-              ? 'Password must be 8 characters long!'
-              : '';
+              errors.engine = this.validationCheck(value)
               break;
             case 'doors': 
             this.state.doors = value;
-              errors.doors = 
-                value < 4
-                ? 'Password must be 8 characters long!'
-                : '';
+              errors.doors = this.validationCheck(value)
             break;
             case 'wheels': 
             this.state.wheels = value;
-              errors.wheels = 
-                value< 4
-                ? 'Password must be 8 characters long!'
-                : '';
+              errors.wheels = this.validationCheck(value)
             break;
             case 'make': 
             this.state.make = value;
-              errors.make = 
-                value.length < 4
-                ? 'Password must be 8 characters long!'
-                : '';
+              errors.make = this.validationCheck(value)
             break;
             case 'model': 
             this.setState({model:value});
-              errors.model = 
-                value.length < 4
-                ? 'Password must be 8 characters long!'
-                : '';
+              errors.model = this.validationCheck(value)
             break;
           default:
             break;
         }
-      
         this.setState({errors, [name]: value});
       }
 
@@ -80,7 +64,7 @@ class  car extends React.Component{
       
     submitCarDetails = ()=>{  
         let postData = {
-            vehileType:this.setState.vehicleType,
+            vehicleType:this.setState.vehicleType,
             engine:this.setState.engine,
             doors:this.setState.doors,
             wheels:this.setState.wheels,
@@ -88,41 +72,51 @@ class  car extends React.Component{
             model:this.setState.model,
             bodyType:this.setState.bodyType,
         }
-    
          axios.post('http://localhost:50630/api/car', postData)
-
     }
     render(){
+      const {errors} = this.state;
     return (
         <div style={{width:'70%', margin:"auto"}}>
-            <form>
+            <form onSubmit={this.submitCarDetails} noValidate>
                 <div className="form-group">
                     <label>vehicle type</label>
-                     <input type="text" className="form-control" id="vehicleType" placeholder="vehicle type" onChange={(e)=>this.handleChange(e, "vehicleType")}/>
-                    
+                     <input type="text" name='vehicleType' className="form-control" id="vehicleType" placeholder="vehicle type" onChange={(e)=>this.handleChange(e, "vehicleType")}/>
+                     {errors.vehicleType.length > 0 && 
+                <span  style={{color:'red'}}>{errors.vehicleType}</span>}
                  </div>
                  <div className="form-group">
                      <label>Engine</label>
-                    <input type="text" className="form-control" id="engine" placeholder="engine" onChange={(e)=>this.handleChange(e, "engine")}/>
+                    <input type="text" name="engine" className="form-control" id="engine" placeholder="engine" onChange={(e)=>this.handleChange(e, "engine")}/>
+                    {errors.engine.length > 0 && 
+                <span style={{color:'red'}}>{errors.engine}</span>}
                 </div>
                 <div className="form-group">
                      <label>Doors</label>
-                    <input type="text" className="form-control" id="doors" placeholder="doors" onChange={(e)=>this.handleChange(e, "doors")}/>
+                    <input type="text" name="doors" className="form-control" id="doors" placeholder="doors" onChange={(e)=>this.handleChange(e, "doors")}/>
+                    {errors.doors.length > 0 && 
+                <span style={{color:'red'}}>{errors.doors}</span>}
                 </div>
                 <div className="form-group">
                      <label>Wheels</label>
-                    <input type="text" className="form-control" id="wheels" placeholder="wheels" onChange={(e)=>this.handleChange(e, "wheels")}/>
+                    <input type="text" name="wheels" className="form-control" id="wheels" placeholder="wheels" onChange={(e)=>this.handleChange(e, "wheels")}/>
+                    {errors.wheels.length > 0 && 
+                <span style={{color:'red'}}>{errors.wheels}</span>}
                 </div>
                 <div className="form-group">
                      <label>Make</label>
-                    <input type="text" className="form-control" id="make" placeholder="make" onChange={(e)=>this.handleChange(e, "make")}/>
+                    <input type="text" name="make" className="form-control" id="make" placeholder="make" onChange={(e)=>this.handleChange(e, "make")}/>
+                    {errors.make.length > 0 && 
+                <span style={{color:'red'}}>{errors.make}</span>}
                 </div>
                 <div className="form-group">
                      <label>Model</label>
-                    <input type="text" className="form-control" id="model" placeholder="model" onChange={(e)=>this.handleChange(e, "model")}/>
+                    <input type="text" name="model" className="form-control" id="model" placeholder="model" onChange={(e)=>this.handleChange(e, "model")}/>
+                    {errors.model.length > 0 && 
+                <span style={{color:'red'}}>{errors.model}</span>}
                 </div>
                 
-                    <button type="submit" className="btn btn-primary" onClick={this.submitCarDetails}>Submit</button>
+                    <button type="submit" className="btn btn-primary" >Submit</button>
             </form>
         </div>
     )
