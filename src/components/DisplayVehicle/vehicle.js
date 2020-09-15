@@ -1,17 +1,25 @@
 import React from 'react';
-const vehicle = ({vehcleDetails}) => {
+const vehicle = ({vehicleDetails}) => {
    return (
     <div className="card " >
         {/* <img className="card-img-top" src={ require('../../assets/images/car.png') }   style={{width:'100%',height:'200px'}} /> */}
-        <img className="card-img-top" src="https://picsum.photos/510/300?random?grayscale"  style={{width:'100%',height:'200px'}} />
+        {/* <img className="card-img-top" src="https://picsum.photos/510/300?random?grayscale"  style={{width:'100%',height:'200px'}} /> */}
 
         <div className="card-body ">
             <div className="row">
                 <div className="col-md-6 d-flex justify-content-start">
-                    <strong>vachicke Type : </strong>
+                    <strong>vehicle Type : </strong>
                 </div>
                 <div className="col-md-6 d-flex justify-content-start">
-                    {vehcleDetails.vachickeType}
+                    {vehicleDetails.vehicleType}
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-md-6 d-flex justify-content-start">
+                    <strong>Engine : </strong>
+                </div>
+                <div className="col-md-6 d-flex justify-content-start">
+                    {vehicleDetails.engine}
                 </div>
             </div>
             <div className="row">
@@ -19,7 +27,7 @@ const vehicle = ({vehcleDetails}) => {
                 <strong> Doors : </strong>
                 </div>
                 <div className="col-md-6 d-flex justify-content-start">
-                    {vehcleDetails.doors}
+                    {vehicleDetails.doors}
                 </div>
             </div>
             <div className="row">
@@ -27,7 +35,7 @@ const vehicle = ({vehcleDetails}) => {
                 <strong> Wheels : </strong>
                 </div>
                 <div className="col-md-6 d-flex justify-content-start">
-                    {vehcleDetails.wheels}
+                    {vehicleDetails.wheels}
                 </div>
             </div>
             <div className="row">
@@ -35,7 +43,7 @@ const vehicle = ({vehcleDetails}) => {
                 <strong>  Body Type : </strong>
                 </div>
                 <div className="col-md-6 d-flex justify-content-start">
-                    {vehcleDetails.bodyType}
+                    {vehicleDetails.bodyType}
                 </div>
             </div>
             <div className="row">
@@ -43,7 +51,7 @@ const vehicle = ({vehcleDetails}) => {
                 <strong> Make : </strong>
                 </div>
                 <div className="col-md-6 d-flex justify-content-start">
-                    {vehcleDetails.make}
+                    {vehicleDetails.make}
                 </div>
             </div>
             <div className="row">
@@ -51,7 +59,7 @@ const vehicle = ({vehcleDetails}) => {
                 <strong>  Model : </strong>
                 </div>
                 <div className="col-md-6 d-flex justify-content-start">
-                    {vehcleDetails.model}
+                    {vehicleDetails.model}
                 </div>
             </div>
         </div>

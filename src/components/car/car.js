@@ -32,27 +32,27 @@ class  car extends React.Component{
         let errors = this.state.errors;
         switch (name) {
             case 'vehicleType': 
-            this.state.vehicleType = value;
+            this.setState({vehicleType:value});
               errors.vehicleType = this.validationCheck(value,'Vehicle Type')
               break;
             case 'engine': 
-            this.state.engine = value;
+            this.setState({engine:value});
               errors.engine = this.validationCheck(value, 'Engine')
               break;
             case 'doors': 
-            this.state.doors = value;
+            this.setState({doors:value});
               errors.doors = this.validationCheck(value,'Doors')
             break;
             case 'wheels': 
-            this.state.wheels = value;
+            this.setState({wheels:value});
               errors.wheels = this.validationCheck(value,'Wheels')
             break;
             case 'make': 
-            this.state.make = value;
+            this.setState({make:value});
               errors.make = this.validationCheck(value,'Make')
             break;
             case 'bodyType': 
-            this.state.bodyType = value;
+            this.setState({bodyType:value});
               errors.bodyType = this.validationCheck(value,'bodyType')
             break;
             case 'model': 
@@ -64,9 +64,6 @@ class  car extends React.Component{
         }
         this.setState({errors, [name]: value});
       }
-
-     
-      
     submitCarDetails = (e)=>{ 
       e.preventDefault()
       if(this.state.vehicleType && this.state.engine && this.state.model && this.state.doors && this.state.wheels && this.state.bodyType ){
@@ -80,7 +77,13 @@ class  car extends React.Component{
           bodyType:this.state.bodyType,
       }
       this.setState({missingField : ''})
-       axios.post('http://localhost:50630/api/car', postData)
+      axios.post('http://localhost:50630/api/car', postData)
+            .then(res=>{
+                console.log(res);
+            })
+            .catch(error=>{
+              console.log(error)
+            })
       }else {
         this.setState({missingField : 'Please fill all the fields'})
         console.log( this.state.missingField)
