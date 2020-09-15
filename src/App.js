@@ -9,17 +9,21 @@ import {Route, BrowserRouter as Router, Link} from 'react-router-dom'
 function App() {
   return (
     <div className="App">
-      <div className="container-fluid">
-                <h1>Car sales</h1>
+      <div >  
                 <Router>
                 <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-                    <Link to='/'>Home</Link>
-                    <Link to='/createVehicle'>Add car</Link>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                     <span className="navbar-toggler-icon"></span>
-                    </button>
-                </nav>
-                <div className="container" style={{marginTop:"30px"}}>
+                    <a className="navbar-brand">Car sales</a>
+                    <ul className="navbar-nav">
+                      <li className="nav-item">
+                        <Link className="nav-link" to='/'>Home</Link>
+                      </li>
+                      <li className="nav-item">
+                        <Link className="nav-link" to='/createVehicle'>Add car</Link>
+                      </li>
+                    </ul>
+                  </nav>
+                
+                <div className="container-fluid" >
                     <Route path='/' exact component={Home}/>
                     <Route path='/createVehicle' exact component={Car}/>
                 </div>
