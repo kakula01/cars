@@ -2,9 +2,7 @@ import React from 'react';
 const vehicle = ({vehicleDetails}) => {
    return (
     <div className="card " >
-        {/* <img className="card-img-top" src={ require('../../assets/images/car.png') }   style={{width:'100%',height:'200px'}} /> */}
-        {/* <img className="card-img-top" src="https://picsum.photos/510/300?random?grayscale"  style={{width:'100%',height:'200px'}} /> */}
-
+        <img className="card-img-top" src={ require('../../assets/images/car.png') }   style={{width:'100%',height:'200px'}} />
         <div className="card-body ">
             <div className="row">
                 <div className="col-md-6 d-flex justify-content-start">

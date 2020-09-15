@@ -1,8 +1,8 @@
 import  React from 'react'
-import axios from 'axios'
-
+import { listOfvehicles } from '../../sharedData/sharedData'
 
 class  car extends React.Component{
+  //  history = useHistory();
     state={
         vehicleType:null,
         engine:null,
@@ -24,6 +24,9 @@ class  car extends React.Component{
     }
     
     validationCheck = (value,type) => {
+      if(type === 'Doors' || type === 'Wheels'){
+       return !value.match(/\d+/) ? 'Only numbers accepted' : ''
+      }
       return value.length === 0 ? `Required ${type}!`  : '';
     }
     validations = (event) => {
@@ -67,7 +70,7 @@ class  car extends React.Component{
     submitCarDetails = (e)=>{ 
       e.preventDefault()
       if(this.state.vehicleType && this.state.engine && this.state.model && this.state.doors && this.state.wheels && this.state.bodyType ){
-        let postData = {
+        let carDetails = {
           vehicleType:this.state.vehicleType,
           engine:this.state.engine,
           doors:this.state.doors,
@@ -76,19 +79,13 @@ class  car extends React.Component{
           model:this.state.model,
           bodyType:this.state.bodyType,
       }
+      
       this.setState({missingField : ''})
-      axios.post('http://localhost:50630/api/car', postData)
-            .then(res=>{
-                console.log(res);
-            })
-            .catch(error=>{
-              console.log(error)
-            })
+      listOfvehicles.push(carDetails)
+      this.props.history.push('/');
       }else {
         this.setState({missingField : 'Please fill all the fields'})
-        console.log( this.state.missingField)
       }
-       
     }
     render(){
       const {errors} = this.state;
