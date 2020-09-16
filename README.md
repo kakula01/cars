@@ -6,4 +6,5 @@ navigate to that folder
 RUN
 
 npm install
+
 npm start
